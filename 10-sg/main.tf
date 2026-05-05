@@ -20,3 +20,13 @@ module "sg" {
   sg_description = "Created for ${var.sg_names[count.index]}"
   vpc_id =  local.vpc_id
 }
+
+# # Frontend Accepting Traffic From Frontend ALB
+# resource "aws_security_group_rule" "forntend_frontend_alb" {
+#   type                     = "ingress"
+#   security_group_id        = module.sg[9].sg_id # Frontend SG ID
+#   source_security_group_id = module.sg[11].sg_id # Frontend ALB SG ID
+#   from_port                = 80
+#   protocol                 = "tcp"
+#   to_port                  = 80
+# }
