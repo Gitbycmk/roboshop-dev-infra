@@ -3,6 +3,8 @@ resource "aws_instance" "mongodb" {
     instance_type = "t3.micro"
     vpc_security_group_ids = [local.mongodb_sg_id]
     subnet_id = local.database_subnet_id
+
+    associate_public_ip_address = true
     
     tags = merge (
         local.common_tags,
@@ -21,7 +23,7 @@ resource "terraform_data" "mongodb" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
-    host     = aws_instance.mongodb.private_ip
+    host     = aws_instance.mongodb.public_ip
   }
 
   # terraform copies this file to mongodb server
