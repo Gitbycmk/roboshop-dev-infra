@@ -62,6 +62,7 @@ resource "terraform_data" "redis" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
+    timeout     = "8m"  
     host     = aws_instance.redis.private_ip
   }
 
@@ -103,6 +104,7 @@ resource "terraform_data" "rabbitmq" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
+    timeout     = "8m"  
     host     = aws_instance.rabbitmq.private_ip
   }
 
@@ -149,6 +151,7 @@ resource "terraform_data" "mysql" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
+    timeout     = "8m"  
     host     = aws_instance.mysql.private_ip
   }
 
