@@ -4,7 +4,7 @@ data "aws_ami" "joindevops" {
     
     filter {
         name   = "name"
-        values = ["Redhat-9-DevOps-Practice"]
+        values = ["RHEL-9-DevOps-Practice"]
     }
 
     filter {
@@ -21,6 +21,19 @@ data "aws_ami" "joindevops" {
 data "aws_ssm_parameter" "mongodb_sg_id" {
   name = "/${var.project_name}/${var.environment}/mongodb_sg_id"
 }
+
+data "aws_ssm_parameter" "redis_sg_id" {
+  name = "/${var.project_name}/${var.environment}/redis_sg_id"
+}
+
+data "aws_ssm_parameter" "rabbitmq_sg_id" {
+  name = "/${var.project_name}/${var.environment}/rabbitmq_sg_id"
+}
+
+data "aws_ssm_parameter" "mysql_sg_id" {
+  name = "/${var.project_name}/${var.environment}/mysql_sg_id"
+}
+
 
 data "aws_ssm_parameter" "database_subnet_ids" {
   name = "/${var.project_name}/${var.environment}/database_subnet_ids"
