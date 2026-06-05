@@ -137,7 +137,7 @@ resource "aws_instance" "mysql" {
     tags = merge (
         local.common_tags,
         {
-            Name = "${var.project_name}-${var.environment}-mysql"
+            Name = "${local.common_name_suffix}-mysql" # roboshop-dev-mysql
         }
     )
 }
@@ -147,20 +147,19 @@ resource "aws_iam_instance_profile" "mysql" {
   role = "EC2SSMParameterStore"
 }
 
-
 resource "terraform_data" "mysql" {
   triggers_replace = [
     aws_instance.mysql.id
   ]
-
-   connection {
+  
+  connection {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
     host     = aws_instance.mysql.private_ip
   }
 
-  # terraform copies this file to mysql server
+  # terraform copies this file to mongodb server
   provisioner "file" {
     source = "bootstrap.sh"
     destination = "/tmp/bootstrap.sh"
@@ -173,3 +172,4 @@ resource "terraform_data" "mysql" {
     ]
   }
 }
+
