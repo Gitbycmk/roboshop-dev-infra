@@ -17,7 +17,7 @@ resource "aws_security_group_rule" "bastion_laptop" {
 }
 
 # Mongodb accepting connections from bastion on port 22
-resource "aws_security_group_rule" "mongodb_" {
+resource "aws_security_group_rule" "mongodb_bastion" {
   type              = "ingress"
   security_group_id = local.mongodb_sg_id
   source_security_group_id = local.bastion_sg_id
