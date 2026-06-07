@@ -1,5 +1,4 @@
-# Create an EC2 Instance
-
+# Create an EC2 Instance for Catalogue
 resource "aws_instance" "catalogue" {
     ami = local.ami_id
     instance_type = "t3.micro"
